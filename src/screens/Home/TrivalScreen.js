@@ -94,7 +94,7 @@ const TrivalScreen = ({ navigation }) => {
         if (selectedAnswer === null) {
             setSelectedAnswer(answer);
             if (answer === questions[currentQuestionIndex]?.correct_answer) {
-                setCorrectCount(correctCount + 1); // Update correctCount here
+                setCorrectCount(correctCount + 1);
             }
         }
     }
