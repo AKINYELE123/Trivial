@@ -13,6 +13,8 @@ const TrivialResult = ({ route, navigation }) => {
     const percentage = (correctCount / total) * 100;
     const isPass = percentage >= 50;
 
+    console.log("correctCount, total ", correctCount, total )
+
     return (
         <MainContainer>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -36,7 +38,7 @@ const TrivialResult = ({ route, navigation }) => {
                             <View style={styles.correctIconContainer}>
                                 <CustomText text={`${correctCount} Correct`} color={Colors.Black} size={14} />
                                 <View style={{ backgroundColor: Colors.Secondary_Green, borderRadius: 20 }}>
-                                    <Ionicons name="checkmark-sharp" size={24} color={Colors.White} />
+                                    <Ionicons name="checkmark" size={24} color={Colors.White} />
                                 </View>
                             </View>
                             <View style={styles.divider} />

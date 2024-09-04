@@ -13,6 +13,7 @@ const TrivalScreen = ({ navigation }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [correctCount, setCorrectCount] = useState(0);
     const [timeLeft, setTimeLeft] = useState(10);
+    const [isTimerActive, setIsTimerActive] = useState(false);
     const [progress, setProgress] = useState(1);
     const [progressColor, setProgressColor] = useState('#4CAF50');
     const [loading, setLoading] = useState(true); 
@@ -36,6 +37,7 @@ const TrivalScreen = ({ navigation }) => {
                 Alert.alert('Failed to load questions. Please check your connection and try again.');
             } finally {
                 setLoading(false);
+                setIsTimerActive(true);
             }
         };
     
@@ -44,7 +46,7 @@ const TrivalScreen = ({ navigation }) => {
     
 
     useEffect(() => {
-        if (timeLeft <= 0) {
+        if (!isTimerActive || timeLeft <= 0) {
             moveToNextQuestion();
         } else {
             if (timeLeft <= 3) {
@@ -61,7 +63,7 @@ const TrivalScreen = ({ navigation }) => {
 
             return () => clearInterval(timer);
         }
-    }, [timeLeft]);
+    }, [isTimerActive, timeLeft]);
 
     const shuffleAnswers = (answers) => {
         return answers.sort(() => Math.random() - 0.5);
@@ -73,8 +75,8 @@ const TrivalScreen = ({ navigation }) => {
             return;
         }
 
-        if (selectedAnswer === questions[currentQuestionIndex]?.correct_answer) {
-            setCorrectCount(correctCount + 1);
+        if (selectedAnswer !== null) {
+            setSelectedAnswer(null);
         }
 
         if (currentQuestionIndex < questions.length - 1) {
@@ -92,10 +94,12 @@ const TrivalScreen = ({ navigation }) => {
         if (selectedAnswer === null) {
             setSelectedAnswer(answer);
             if (answer === questions[currentQuestionIndex]?.correct_answer) {
-                setCorrectCount(correctCount + 1);
+                setCorrectCount(correctCount + 1); // Update correctCount here
             }
         }
-    };
+    }
+
+    console.log("correctCount", correctCount)
 
     const getLetterPrefix = (index) => {
         return String.fromCharCode(65 + index) + ":";

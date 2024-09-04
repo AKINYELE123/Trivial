@@ -9,6 +9,7 @@ import Sarah from "../../assets/svgs/Sarah.svg"
 import Hannex from "../../assets/svgs/Hannex.svg"
 import Ini from "../../assets/svgs/Ini.svg"
 import Liz from "../../assets/svgs/Liz.svg"
+import Head from "../../assets/svgs/Head.svg"
 import { CustomText } from '../../component/Text';
 
 const HomeScreen = ({ navigation }) => {
@@ -63,10 +64,7 @@ const HomeScreen = ({ navigation }) => {
                 <View style={styles.ContentContainer}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <View style={styles.imageContainer}>
-                            <Image
-                                source={require("../../assets/Images/Header.png")}
-                                style={styles.Image}
-                            />
+                            <Head />
                         </View>
 
                         <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 10, alignItems: "center" }}>
